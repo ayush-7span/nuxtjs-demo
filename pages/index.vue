@@ -7,7 +7,7 @@
 				  <div class="article-inner">
 						<img :src="require(`~/assets/resources/${article.img}`)" alt="" />
 						<div class="detail">
-							<h3>{{ article.title }}</h3>
+							<h4>{{ article.title }}</h4>
 							<p>{{ article.description }}</p>
 						</div>
 				  </div>
@@ -20,12 +20,8 @@
 <script>
 export default {
 	async asyncData({ $content, params }) {
-		const articles = await $content('blog', params.slug)
-			.only(['title', 'description', 'img', 'slug'])
-			.sortBy('createdAt', 'asc')
-			.fetch();
-
-		return {
+		const articles = await $content('blog', params.slug).only(['title', 'description', 'img', 'slug']).sortBy('createdAt', 'asc').fetch();
+    return {
 			articles
 		}
 	}
